@@ -23,4 +23,14 @@ let db ={
             isFullyPaid: 'Is this fully paid by bossCompany'
         }
     ]
+};
+
+const userDetails = {
+    //Redux data
+    credentials: {
+        userId: 'N43KJ5H43KJHREW4J5H3JWMERHB',
+        email: 'user@email.com',
+        handle: 'user',
+        createdAt: '2019-03-15T10:59:52.798Z'
+      }
 }

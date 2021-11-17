@@ -1,5 +1,10 @@
 const { getAllProjects, addProject } = require('./handlers/projects');
-const { signup, login } = require('./handlers/users');
+const { 
+    signup,
+     login,
+      getAuthenticatedUser,
+    //    getUserDetails
+     } = require('./handlers/users');
 
 const functions = require("firebase-functions");
 const app = require('express')();
@@ -18,6 +23,8 @@ app.post('/addProject', FBAuth, addProject);
 //SIGNUP ROUTES
 app.post('/signup', signup);
 app.post('/login', login);
-//ADD app.get('/user', getUserData) //Gets user details
+// app.post('/user', FBAuth, addUserDetails); //maybe for future use
+app.get('/user', FBAuth, getAuthenticatedUser);
+// app.get('/user/:handle', getUserDetails);
 
 exports.api = functions.https.onRequest(app);
