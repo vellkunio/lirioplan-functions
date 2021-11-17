@@ -1,9 +1,8 @@
 const { getAllProjects, addProject } = require('./handlers/projects');
 const { 
     signup,
-     login,
-      getAuthenticatedUser,
-    //    getUserDetails
+    login,
+    getAuthenticatedUser
      } = require('./handlers/users');
 
 const functions = require("firebase-functions");
