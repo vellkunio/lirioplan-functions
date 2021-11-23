@@ -42,3 +42,46 @@ exports.validateLoginData = (data) => {
     }
 
 }
+
+//Finding for fields that need to be updated and sending them back to projects.js
+exports.updateUserDetails = (data) => {
+    let newDetails = {};
+
+    if(data.address != null){
+        if (!isEmpty(data.address.trim())) newDetails.address = data.address;
+    }
+
+    if(data.bossCompany != null){
+        if (!isEmpty(data.bossCompany.trim())) newDetails.bossCompany = data.bossCompany;
+    }
+
+    if(data.room != null){
+        if (!isEmpty(data.room.trim())) newDetails.room = data.room;
+    }
+
+    if(data.size != null){
+        newDetails.size = data.size;
+    }
+
+    if(data.makeMoney != null){
+        newDetails.makeMoney = data.makeMoney;
+    }
+    
+    if(data.spendMoney != null){
+        newDetails.spendMoney = data.spendMoney;
+    }
+    
+    if(data.isStarted != null){
+        newDetails.isStarted = data.isStarted;
+    }
+    
+    if(data.isFullyPaid != null){
+        newDetails.isFullyPaid = data.isFullyPaid;
+    }
+
+    if(data.isFinished != null){
+        newDetails.isFinished = data.isFinished;
+    }
+
+    return newDetails;
+}

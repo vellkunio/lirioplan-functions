@@ -1,9 +1,9 @@
-const { getAllProjects, addProject } = require('./handlers/projects');
+const { getAllProjects, addProject, editProject } = require('./handlers/projects');
 const { 
     signup,
     login,
     getAuthenticatedUser
-     } = require('./handlers/users');
+} = require('./handlers/users');
 
 const functions = require("firebase-functions");
 const app = require('express')();
@@ -18,6 +18,7 @@ const FBAuth = require('./util/fbAuth');
 //Project Routes
 app.get('/projects', getAllProjects);
 app.post('/addProject', FBAuth, addProject);
+app.post('/editProject/:projectId', FBAuth, editProject);
 
 //SIGNUP ROUTES
 app.post('/signup', signup);

@@ -1,3 +1,5 @@
+const { updateUserDetails} = require('../util/validators');
+
 const { db } = require('../util/admin');
 
 exports.getAllProjects = (req, res) => {
@@ -45,3 +47,20 @@ exports.addProject = (req, res) => {
         console.error(err);
     });
 };
+
+
+//Edit Project on Button "Edit"
+//Pass any fields and it will change only columns that you pass.
+exports.editProject = (req, res) => {
+    const documentRoute = db.collection('houseProjects').doc(req.params.projectId);
+    let updatedUserData = updateUserDetails(req.body);
+
+    documentRoute.update(updatedUserData)
+    .then(() => {
+        return res.json({ message: "Edited successfully" });
+    })
+    .catch((err) => {
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    });
+}

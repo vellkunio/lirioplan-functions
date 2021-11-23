@@ -5,7 +5,7 @@ let db ={
             email: 'user@email.com',
             handle: 'userNickName',
             createdAt: '2021-10-27T19:53:48.206Z',
-            isSupervisor: 'true',
+            isAdmin: 'true',
             maybe: 'SIN, address, their info of income, etc.'
         }
     ],
@@ -20,7 +20,9 @@ let db ={
             spendMoney: 'Expences for this job',
             isStarted: 'Is this job started',
             isFinished: 'Is this job finished',
-            isFullyPaid: 'Is this fully paid by bossCompany'
+            isFullyPaid: 'Is this fully paid by bossCompany',
+            room: 'Main Bathroom',
+            size: '1500'
         }
     ]
 };
