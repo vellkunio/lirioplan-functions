@@ -1,4 +1,10 @@
-const { getAllProjects, addProject, editProject } = require('./handlers/projects');
+
+const { getAllProjects,
+        addProject,
+        editProject,
+        deleteProject
+     } = require('./handlers/projects');
+
 const { 
     signup,
     login,
@@ -19,6 +25,7 @@ const FBAuth = require('./util/fbAuth');
 app.get('/projects', getAllProjects);
 app.post('/addProject', FBAuth, addProject);
 app.post('/editProject/:projectId', FBAuth, editProject);
+app.delete('/project/:projectId', FBAuth, deleteProject);
 
 //SIGNUP ROUTES
 app.post('/signup', signup);

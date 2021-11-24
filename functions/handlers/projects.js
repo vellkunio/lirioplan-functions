@@ -35,7 +35,9 @@ exports.addProject = (req, res) => {
         spendMoney: req.body.spendMoney,
         isStarted: req.body.isStarted,
         isFinished: req.body.isFinished,
-        isFullyPaid: req.body.isFullyPaid
+        isFullyPaid: req.body.isFullyPaid,
+        room: req.body.room,
+        size: req.body.size
     };
 
     db.collection('houseProjects').add(newProject)
@@ -66,8 +68,34 @@ exports.editProject = (req, res) => {
             });
     }
     else {
-        return res.status(500).json({ error: "Not enough power to do it" });
+        return res.status(403).json({ general: "Not enough power to do it" });
     }
 
     
+}
+
+
+//Delete project
+
+exports.deleteProject = (req, res) => {
+    const document = db.doc(`/houseProjects/${req.params.projectId}`);
+    document.get()
+    .then(doc => {
+        if(!doc.exists){
+            return res.status(404).json({ error: 'Project not found' });
+        }
+        // if(doc.data.userHandle !== req.user.handle){
+        if(!req.user.isAdmin){
+            return res.status(403).json({ error: 'Unauthorized'})
+        } else {
+            return document.delete();
+        }
+    })
+    .then(()=>{
+        res.json({ message: 'Scream deleted successfully'});
+    })
+    .catch(err=>{
+        console.error(err);
+        return res.status(500).json({ error: err.code });
+    })
 }
