@@ -21,6 +21,7 @@ module.exports = (req, res, next) => {
     })
     .then(data => {
         req.user.handle = data.docs[0].data().handle;
+        req.user.isAdmin = data.docs[0].data().isAdmin;
         return next();
     })
     .catch(err => {

@@ -44,7 +44,7 @@ exports.validateLoginData = (data) => {
 }
 
 //Finding for fields that need to be updated and sending them back to projects.js
-exports.updateUserDetails = (data) => {
+exports.updateProjectDetails = (data) => {
     let newDetails = {};
 
     if(data.address != null){

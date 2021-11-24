@@ -14,7 +14,8 @@ exports.signup = (req, res) => {
         email: req.body.email,
         password: req.body.password,
         confirmPassword: req.body.confirmPassword,
-        handle: req.body.handle
+        handle: req.body.handle,
+        isAdmin: true
     };
 
     const { valid, errors } = validateSignupData(newUser);
@@ -42,7 +43,8 @@ exports.signup = (req, res) => {
             handle: newUser.handle,
             email: newUser.email,
             createdAt: new Date().toISOString(),
-            userId //short way of userId: userId |||||| Because variables have same name
+            userId, //short way of userId: userId |||||| Because variables have same name
+            isAdmin: true
         };
         return db.doc(`/users/${newUser.handle}`).set(userCredentials);
     })

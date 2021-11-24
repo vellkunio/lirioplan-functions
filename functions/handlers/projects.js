@@ -1,4 +1,4 @@
-const { updateUserDetails} = require('../util/validators');
+const { updateProjectDetails} = require('../util/validators');
 
 const { db } = require('../util/admin');
 
@@ -53,14 +53,21 @@ exports.addProject = (req, res) => {
 //Pass any fields and it will change only columns that you pass.
 exports.editProject = (req, res) => {
     const documentRoute = db.collection('houseProjects').doc(req.params.projectId);
-    let updatedUserData = updateUserDetails(req.body);
+    let updatedProjectData = updateProjectDetails(req.body);
 
-    documentRoute.update(updatedUserData)
-    .then(() => {
-        return res.json({ message: "Edited successfully" });
-    })
-    .catch((err) => {
-        console.error(err);
-        return res.status(500).json({ error: err.code });
-    });
+    if(req.user.isAdmin){
+        documentRoute.update(updatedProjectData)
+            .then(() => {
+                return res.json({ message: "Edited successfully" });
+            })
+            .catch((err) => {
+                console.error(err);
+                return res.status(500).json({ error: err.code });
+            });
+    }
+    else {
+        return res.status(500).json({ error: "Not enough power to do it" });
+    }
+
+    
 }
