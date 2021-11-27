@@ -40,6 +40,7 @@ exports.addProject = (req, res) => {
         size: req.body.size
     };
 
+    if(req.user.isAdmin){
     db.collection('houseProjects').add(newProject)
     .then(doc => {
         res.json({ message: `document ${doc.id} was successully created!`});
@@ -48,6 +49,9 @@ exports.addProject = (req, res) => {
         res.status(500).json({error: 'something went wrong'});
         console.error(err);
     });
+    } else {
+        return res.status(403).json({ general: "Only administrators are allowed to do so" });
+    }
 };
 
 
@@ -68,7 +72,7 @@ exports.editProject = (req, res) => {
             });
     }
     else {
-        return res.status(403).json({ general: "Not enough power to do it" });
+        return res.status(403).json({ general: "Only administrators are allowed to do so" });
     }
 
     
