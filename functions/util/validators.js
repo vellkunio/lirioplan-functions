@@ -85,3 +85,60 @@ exports.updateProjectDetails = (data) => {
 
     return newDetails;
 }
+
+
+
+exports.updateMaterialDetails = (data) => {
+    let newDetails = {};
+
+    if(data.materialType != null){
+        if (!isEmpty(data.materialType.trim())) newDetails.materialType = data.materialType;
+    }
+
+    if(data.materialExactName != null){
+        if (!isEmpty(data.materialExactName.trim())) newDetails.materialExactName = data.materialExactName;
+    }
+
+    if(data.uniqueCode != null){
+        if (!isEmpty(data.uniqueCode.trim())) newDetails.uniqueCode = data.uniqueCode;
+    }
+
+    if(data.manufacturer != null){
+        if (!isEmpty(data.manufacturer.trim())) newDetails.manufacturer = data.manufacturer;
+    }
+    
+    if(data.uniqueCode != null){
+        if (!isEmpty(data.uniqueCode.trim())) newDetails.uniqueCode = data.uniqueCode;
+    }
+
+    if(data.quantity != null){
+        if (!isEmpty(data.quantity.trim())) newDetails.quantity = data.quantity;
+    }
+    
+    //For numerical entries
+    if(data.quantityInBox != null){
+        newDetails.quantityInBox = data.quantityInBox;
+    }
+
+    if(data.length != null){
+        newDetails.length = data.length;
+    }
+
+    if(data.width != null){
+        newDetails.width = data.width;
+    }
+
+    if(data.height != null){
+        newDetails.height = data.height;
+    }
+
+    if(data.sqftPerTile != null){
+        newDetails.sqftPerTile = data.sqftPerTile;
+    }
+
+    if(data.sqftPerBox != null){
+        newDetails.sqftPerBox = data.sqftPerBox;
+    }
+
+    return newDetails;
+}
