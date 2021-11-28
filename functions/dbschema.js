@@ -42,7 +42,10 @@ let db ={
             userHandle: "Sam",
             sqftPerTile: '0.97', //sqft
             sqftPerBox: '19.33', //sqft
-            price: '30' //Canadian dollars per box before tax
+            price: '30', //Canadian dollars per box before tax
+            quantity: '50' //Boxes is currently in warehouse
+
+
         }
     ]
 };

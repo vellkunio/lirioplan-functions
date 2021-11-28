@@ -17,7 +17,8 @@ exports.addMaterial = (req, res) => {
         height: req.body.height,
         sqftPerTile: req.body.sqftPerTile,
         sqftPerBox: req.body.sqftPerBox,
-        price: req.body.price
+        price: req.body.price,
+        quantity: req.body.quantity
     };
 
     // if(req.user.isAdmin){

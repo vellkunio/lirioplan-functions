@@ -110,6 +110,10 @@ exports.updateMaterialDetails = (data) => {
     if(data.uniqueCode != null){
         if (!isEmpty(data.uniqueCode.trim())) newDetails.uniqueCode = data.uniqueCode;
     }
+
+    if(data.quantity != null){
+        if (!isEmpty(data.quantity.trim())) newDetails.quantity = data.quantity;
+    }
     
     //For numerical entries
     if(data.quantityInBox != null){
