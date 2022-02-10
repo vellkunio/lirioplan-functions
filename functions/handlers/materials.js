@@ -26,7 +26,7 @@ exports.addMaterial = (req, res) => {
         width: req.body.width,
         height: req.body.height,
         sqftPerTile,                        //changable
-        sqftPerBox,                         //changable
+        sqftPerBox,                         //changablee
         price: req.body.price,
         quantity: req.body.quantity
     };
