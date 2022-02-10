@@ -37,10 +37,11 @@ exports.addProject = (req, res) => {
         isFinished: req.body.isFinished,
         isFullyPaid: req.body.isFullyPaid,
         room: req.body.room,
-        size: req.body.size
+        size: req.body.size,
+        
     };
 
-    if(req.user.isAdmin){
+    if(req.user.userStatus === 'admin'){
     db.collection('houseProjects').add(newProject)
     .then(doc => {
         res.json({ message: `document ${doc.id} was successully created!`});
@@ -61,7 +62,7 @@ exports.editProject = (req, res) => {
     const documentRoute = db.collection('houseProjects').doc(req.params.projectId);
     let updatedProjectData = updateProjectDetails(req.body);
 
-    if(req.user.isAdmin){
+    if(req.user.userStatus === 'admin'){
         documentRoute.update(updatedProjectData)
             .then(() => {
                 return res.json({ message: "Edited successfully" });
@@ -89,14 +90,14 @@ exports.deleteProject = (req, res) => {
             return res.status(404).json({ error: 'Project not found' });
         }
         // if(doc.data.userHandle !== req.user.handle){
-        if(!req.user.isAdmin){
+        if(req.user.userStatus != 'admin'){
             return res.status(403).json({ error: 'Unauthorized'})
         } else {
             return document.delete();
         }
     })
     .then(()=>{
-        res.json({ message: 'Scream deleted successfully'});
+        res.json({ message: 'Project deleted successfully'});
     })
     .catch(err=>{
         console.error(err);
