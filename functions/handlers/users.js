@@ -10,12 +10,13 @@ const auth = getAuth();
 const { validateSignupData, validateLoginData } = require('../util/validators');
 
 exports.signup = (req, res) => {
+
     const newUser = {
         email: req.body.email,
         password: req.body.password,
         confirmPassword: req.body.confirmPassword,
         handle: req.body.handle,
-        isAdmin: true
+        code: req.body.code
     };
 
     const { valid, errors } = validateSignupData(newUser);
@@ -23,6 +24,14 @@ exports.signup = (req, res) => {
     if(!valid) return res.status(400).json(errors);
     
     let token, userId;
+    if(newUser.code === '1111'){
+        isUserStatus = 'visitor'
+    } else if(newUser.code === '112233'){
+        isUserStatus = 'employee'
+    } else if(newUser.code === '2262241256'){
+        isUserStatus = 'admin'
+    }
+
     db.doc(`/users/${newUser.handle}`)
     .get()
     .then((doc) => {
@@ -44,7 +53,7 @@ exports.signup = (req, res) => {
             email: newUser.email,
             createdAt: new Date().toISOString(),
             userId, //short way of userId: userId |||||| Because variables have same name
-            isAdmin: true
+            userStatus: isUserStatus
         };
         return db.doc(`/users/${newUser.handle}`).set(userCredentials);
     })

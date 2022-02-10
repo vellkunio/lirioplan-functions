@@ -28,6 +28,9 @@ const app = require('express')();
 
 const FBAuth = require('./util/fbAuth');
 
+const cors = require('cors');
+app.use(cors());
+
 //Project Routes
 app.get('/projects', getAllProjects);
 app.post('/addProject', FBAuth, addProject);

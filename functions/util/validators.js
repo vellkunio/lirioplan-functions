@@ -19,9 +19,16 @@ exports.validateSignupData = (data) => {
         errors.email = 'Must be a valid Email';
     }
 
+    if(isEmpty(data.code)){
+        errors.code = 'Must not be empty';
+    } else if(data.code != '1111' && data.code != '112233' && data.code != '2262241256'){
+        errors.code = 'Invalid code value'
+    }
+
     if(isEmpty(data.password)) errors.password = 'Must not be empty';
     if(data.password != data.confirmPassword) errors.confirmPassword = 'Passwords must be the same';
     if(isEmpty(data.handle)) errors.handle = 'Must not be empty';
+    // if(isEmpty(data.code)) errors.code = 'Must not be empty';
     
     return {
         errors,
